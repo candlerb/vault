@@ -532,7 +532,7 @@ func (b *creationBundle) sign() (retCert *ssh.Certificate, retErr error) {
 	algo := b.Role.AlgorithmSigner
 	sig, err := sshAlgorithmSigner.SignWithAlgorithm(rand.Reader, certificateBytes, algo)
 	if err != nil {
-		return nil, fmt.Errorf("failed to generate signed SSH key: sign error")
+		return nil, fmt.Errorf("failed to generate signed SSH key: sign error: %w", err)
 	}
 
 	certificate.Signature = sig
